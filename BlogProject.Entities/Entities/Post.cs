@@ -10,19 +10,26 @@ namespace BlogProject.Entities.Entities
 {
     public class Post : CoreEntity
     {
+        public Post()
+        {
+            this.Comments = new List<Comment>();
+        }
         public string Title { get; set; }
         public string PostDetail { get; set; }
         public string Tags { get; set; }
         public string ImagePath { get; set; }
         public int ViewCount { get; set; }
 
-        // Navigstion Properties
+        // Navigation Properties
         [ForeignKey("Kategori")]
         public Guid CategoryID { get; set; }
         public virtual Category Kategori { get; set; }
 
         [ForeignKey("Kullanici")]
         public Guid UserID { get; set; }
-        public virtual Category Kullanici { get; set; }
+        public virtual User Kullanici { get; set; }
+        public virtual List<Comment> Comments { get; set; }
+
+
     }
 }

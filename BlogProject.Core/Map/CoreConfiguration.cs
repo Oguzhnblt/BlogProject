@@ -22,7 +22,7 @@ namespace BlogProject.Core.Map
 
             builder.Property(x => x.ModifiedDate).IsRequired(false);
             builder.Property(x => x.ModifiedComputerName).IsRequired(false).HasMaxLength(255);
-            builder.Property(x => x.ModifiedIP).IsRequired(false).HasMaxLength(15);
+            builder.Property(x => x.ModifiedIP).IsRequired(false).HasMaxLength(15); 
 
 
         }

@@ -12,5 +12,5 @@ namespace BlogProject.Core.Entity.Enum
         Active = 1,
         Deleted = 3,
         Updated = 5,
-    }
+    } 
 }

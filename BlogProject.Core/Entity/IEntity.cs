@@ -9,6 +9,6 @@ namespace BlogProject.Core.Entity
 {
     public interface IEntity<T>
     {
-        T ID { get; set; }
+        T ID { get; set;  }
     }
 }

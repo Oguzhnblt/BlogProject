@@ -19,6 +19,6 @@ namespace BlogProject.Core.Entity
         public DateTime? ModifiedDate { get; set; }
         public string? ModifiedComputerName { get; set; }
         public string? ModifiedIP { get; set; }
-
+     
     }
 }

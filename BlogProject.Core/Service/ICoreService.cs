@@ -12,7 +12,7 @@ namespace BlogProject.Core.Service
     {
         bool Add(T item);
         bool Add(List<T> items);
-        bool Remove(T item);    
+        bool Remove(T item);     
         bool Remove(Guid id); 
         bool RemoveAll(Expression<Func<T, bool>> expression); // Belli bir LINQ ifadesine göre filtreleyip silmek için yazılan servis metodu. Metodun içine LINQ ifadesi verilecektir.
         bool Update(T item);
