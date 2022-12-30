@@ -116,13 +116,13 @@ namespace BlogProject.Entities.Migrations
                         column: x => x.UserID,
                         principalTable: "AppUsers",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Comments_Posts_PostID",
                         column: x => x.PostID,
                         principalTable: "Posts",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
