@@ -2,6 +2,7 @@
 using BlogProject.Entities.Entities;
 using BlogProject.Entities.Map;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,10 @@ namespace BlogProject.Entities.Context
 {
     public class BlogProjectContext : DbContext
     {
+        public BlogProjectContext(DbContextOptions<BlogProjectContext> options) : base(options)
+        {
+
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=OGUZ; Database=OnionBlogProject; uid=sa; pwd=123;");

@@ -2,6 +2,7 @@
 using BlogProject.Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
 using MVC_BlogProject.Models;
+using MVC_BlogProject.Models.ViewModels;
 using System.Diagnostics;
 
 namespace MVC_BlogProject.Controllers
@@ -42,6 +43,11 @@ namespace MVC_BlogProject.Controllers
             Post okunanPost = postService.GetById(id);
             okunanPost.ViewCount++;
             postService.Update(okunanPost);
+
+            PostDetailVM vm = new PostDetailVM();
+            vm.Post = okunanPost;
+            vm.Category = categoryService.GetById(okunanPost.CategoryID);
+            vm.User = userService.GetById(okunanPost.UserID);
 
             return View(); // View'a döndürürken ilgili postu, yazarını(kullanıcıyı) döndürmemiz gerekecektir. Bu sebeple Tuple ya da ViewModel yapısını kullanabiliriz.
 
