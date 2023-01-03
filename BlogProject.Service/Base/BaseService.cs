@@ -5,6 +5,7 @@ using BlogProject.Entities.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -160,6 +161,33 @@ namespace BlogProject.Service.Base
         {
             context.Entry<T>(item).State = EntityState.Detached; // Bir entry'i takip etmeyi bırakmak için kullanılır.
         }
-
     }
 }
+
+// The BaseService class is a generic service class that provides various methods for interacting with a database using Entity Framework. The class is designed to work with any entity type that is specified when the service is used.
+
+// The Add method adds a single item to the database. If the operation is successful, it returns true. If an exception is thrown, it returns false.
+
+// The Add method that takes a list of items adds the items to the database within a transaction scope. If the operation is successful, it returns true. If an exception is thrown, it returns false.
+
+// The Any method checks if there are any items in the database that match the specified expression. It returns true if there are any matching items, and false if there are none.
+
+// The GetActive method retrieves a list of all active items from the database.
+
+// The GetAll method retrieves a list of all items from the database.
+
+// The GetByDefault method retrieves the first item from the database that matches the specified expression.
+
+// The GetById method retrieves an item from the database by its ID.
+
+// The GetDefault method retrieves a list of items from the database that match the specified expression.
+
+// The Remove method sets the status of a single item to "deleted" and updates it in the database.
+
+// The Remove method that takes an ID retrieves the item with the specified ID, sets its status to "deleted", and updates it in the database within a transaction scope.
+
+// The RemoveAll method sets the status of all items that match the specified expression to "deleted" and updates them in the database within a transaction scope. If all the updates are successful, the transaction scope is completed and the changes are persisted to the database.
+
+// The Update method updates an item in the database. If the operation is successful, it returns true. If an exception is thrown, it returns false.
+
+// The Save method saves any changes made to the database and returns the number of affected rows.

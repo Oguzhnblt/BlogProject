@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BlogProject.Core.Service;
+using BlogProject.Entities.Entities;
+using Microsoft.AspNetCore.Mvc;
 using MVC_BlogProject.Models;
 using System.Diagnostics;
 
@@ -7,26 +9,44 @@ namespace MVC_BlogProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICoreService<Category> categoryService;
+        private readonly ICoreService<User> userService;
+        private readonly ICoreService<Post> postService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICoreService<Category> categoryService, ICoreService<User> userService, ICoreService<Post> postService)
         {
             _logger = logger;
+            this.categoryService = categoryService;
+            this.userService = userService;
+            this.postService = postService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            // Aktif olan postları döndür
+
+            return View(postService.GetActive());
         }
 
-        public IActionResult Privacy()
+        public IActionResult PostByCategoryID(Guid id) // Kategorinin ID'si
         {
-            return View();
+            // Kategori ID'ye göre aktif postları döndür.
+
+            return View(postService.GetDefault(x=> x.CategoryID == id));
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Post(Guid id) // Gönderinin ID'si
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            // Post'u göstermek için. Gösterirken de ViewCount sayısını 1 arttıracağız
+
+            Post okunanPost = postService.GetById(id);
+            okunanPost.ViewCount++;
+            postService.Update(okunanPost);
+
+            return View(); // View'a döndürürken ilgili postu, yazarını(kullanıcıyı) döndürmemiz gerekecektir. Bu sebeple Tuple ya da ViewModel yapısını kullanabiliriz.
+
+
         }
+
     }
 }

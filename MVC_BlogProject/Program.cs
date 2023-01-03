@@ -1,7 +1,15 @@
+using BlogProject.Core.Service;
+using BlogProject.Service.Base;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+
+// .NET Core MVC'de tamamen Dependency Injection yapýsýyla çalýþýyoruz. ICoreService interface'inin BaseService ile olan gevþek baðýmlýlýðýný tanýmlýyoruz. Nerede ICoreService çaðýrýlýrsa, onun yerine BaseService gönderilecektir.
+
+builder.Services.AddScoped(typeof(ICoreService<>), typeof(BaseService<>));
 
 var app = builder.Build();
 
