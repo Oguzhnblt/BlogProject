@@ -7,7 +7,7 @@
 {
     <article class="col-12 col-md-6 tm-post">
         <hr class="tm-hr-primary">
-        <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+        <a asp-action="Post" asp-controller="Home" asp-route-id="@gonderi.ID" class="effect-lily tm-post-link tm-pt-60">
             <div class="tm-post-link-inner">
                 <img src="@gonderi.ImagePath" alt="Image" class="img-fluid">
             </div>
@@ -17,8 +17,7 @@
         <p class="tm-pt-30">
             @if (gonderi.PostDetail.Length > 100)
             {
-                @gonderi.PostDetail.Substring(100)
-
+                @gonderi.PostDetail.Substring(0,100)
             }
             else
             {
@@ -31,8 +30,9 @@
         </div>
         <hr>
         <div class="d-flex justify-content-between">
-            <span>36 comments @*@gonderi.Comments.Count*@</span>
-            <span>by Admin Nat @* @gonderi.UserID*@</span>
+            @*<span>@gonderi.Comments.</span>*@
+            @*<span>by Admin Nat @gonderi.UserID</span>*@
+            <span>@gonderi.Comments.ToString()</span>
         </div>
     </article>
 

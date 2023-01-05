@@ -22,7 +22,7 @@ namespace BlogProject.Service.Base
         {
             this.context = context;
         }
-       
+
         public bool Add(T item)
         {
             try
@@ -41,7 +41,7 @@ namespace BlogProject.Service.Base
         {
             try
             {
-                
+
 
                 using (TransactionScope ts = new TransactionScope())
                 {
@@ -62,6 +62,15 @@ namespace BlogProject.Service.Base
         public bool Any(Expression<Func<T, bool>> expression) => context.Set<T>().Any(expression);
 
         public List<T> GetActive() => context.Set<T>().Where(x => x.Status == Status.Active).ToList();
+        public IQueryable<T> GetActive(params Expression<Func<T, object>>[] includes)
+        {
+            var query = context.Set<T>().Where(x => x.Status == Status.Active);
+            if (includes != null)
+            {
+                query = includes.Aggregate(query, (current, include) => current.Include(include));
+            }
+            return query;
+        }
 
         public List<T> GetAll() => context.Set<T>().ToList();
 
@@ -81,7 +90,7 @@ namespace BlogProject.Service.Base
         {
             try
             {
-                using(TransactionScope ts = new TransactionScope())
+                using (TransactionScope ts = new TransactionScope())
                 {
                     T item = GetById(id);
                     item.Status = Status.Deleted;
@@ -104,14 +113,14 @@ namespace BlogProject.Service.Base
             {
                 using (TransactionScope ts = new TransactionScope())
                 {
-                   var collection = GetDefault(expression);  // Verilen ifadeye göre ilgili nesneleri collection'a atıyoruz.
+                    var collection = GetDefault(expression);  // Verilen ifadeye göre ilgili nesneleri collection'a atıyoruz.
                     int counter = 0;
                     foreach (var item in collection)
                     {
                         item.Status = Status.Deleted;
                         bool operationResult = Update(item); // DB'den silmiyoruz. Durumunu silindi olarak ayarlıyoruz ve bunu da update metodu ile gerçekleştiriyoruz.
 
-                        if(operationResult)
+                        if (operationResult)
                         {
                             counter++;  // Sıradaki item'in silinme işlemi (yani silindi işaretleme) başarılı ise sayacı 1 arttırıyoruz.
                         }
@@ -152,7 +161,7 @@ namespace BlogProject.Service.Base
         }
         public bool Activate(Guid id)
         {
-            T item= GetById(id);
+            T item = GetById(id);
             item.Status = Status.Active;
             return Update(item);
         }

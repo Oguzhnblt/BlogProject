@@ -1,4 +1,5 @@
-﻿using BlogProject.Core.Service;
+﻿using BlogProject.Core.Entity.Enum;
+using BlogProject.Core.Service;
 using BlogProject.Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
 using MVC_BlogProject.Models;
@@ -13,13 +14,16 @@ namespace MVC_BlogProject.Controllers
         private readonly ICoreService<Category> categoryService;
         private readonly ICoreService<User> userService;
         private readonly ICoreService<Post> postService;
+        private readonly ICoreService<Comment> commentService;
 
-        public HomeController(ILogger<HomeController> logger, ICoreService<Category> categoryService, ICoreService<User> userService, ICoreService<Post> postService)
+
+        public HomeController(ILogger<HomeController> logger, ICoreService<Category> categoryService, ICoreService<User> userService, ICoreService<Post> postService, ICoreService<Comment> commentService)
         {
             _logger = logger;
             this.categoryService = categoryService;
             this.userService = userService;
             this.postService = postService;
+            this.commentService = commentService;
         }
 
         public IActionResult Index()
@@ -48,6 +52,7 @@ namespace MVC_BlogProject.Controllers
             vm.Post = okunanPost;
             vm.Category = categoryService.GetById(okunanPost.CategoryID);
             vm.User = userService.GetById(okunanPost.UserID);
+            vm.Comments = commentService.GetDefault(x => x.Status == Status.Active && x.PostID == okunanPost.ID);
 
             return View(); // View'a döndürürken ilgili postu, yazarını(kullanıcıyı) döndürmemiz gerekecektir. Bu sebeple Tuple ya da ViewModel yapısını kullanabiliriz.
 
