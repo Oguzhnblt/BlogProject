@@ -33,11 +33,11 @@ namespace MVC_BlogProject.Controllers
             return View(postService.GetActive());
         }
 
-        public IActionResult PostByCategoryID(Guid id) // Kategorinin ID'si
+        public IActionResult PostsByCategoryID(Guid id) // Kategorinin ID'si
         {
             // Kategori ID'ye göre aktif postları döndür.
 
-            return View(postService.GetDefault(x=> x.CategoryID == id));
+            return View(postService.GetDefault(x => x.CategoryID == id));
         }
 
         public IActionResult Post(Guid id) // Gönderinin ID'si
@@ -54,9 +54,32 @@ namespace MVC_BlogProject.Controllers
             vm.User = userService.GetById(okunanPost.UserID);
             vm.Comments = commentService.GetDefault(x => x.Status == Status.Active && x.PostID == okunanPost.ID);
 
+
+            // Random RelatedPost döndürmek için
+
+            Random r = new Random(); // Random nesnesi oluşturduk.
+            vm.Categories = categoryService.GetActive();
+
+            for (int i = 0; i < 3; i++)
+            {
+                vm.RelatedPost.Add(postService.GetActive().ElementAt(r.Next(0, postService.GetActive().Count)));
+
+                // Okunan kategorinin içerisindeki rastgele bir postu bulmak için
+                //vm.RelatedPost.Add(postService.GetDefault(x=>x.CategoryID == okunanPost.CategoryID).ElementAt(r.Next(0, postService.GetActive().Count)));
+
+            }
+
+
             return View(); // View'a döndürürken ilgili postu, yazarını(kullanıcıyı) döndürmemiz gerekecektir. Bu sebeple Tuple ya da ViewModel yapısını kullanabiliriz.
 
 
+        }
+
+        public IActionResult SearchResult(string q) // Kategorinin ID'si
+        {
+            // Kategori ID'ye göre aktif postları döndür.
+
+            return View(postService.GetActive(x => x.Kullanici, x1=>x1.Comments).Where(x=>x.Title.Contains(q)|| x.PostDetail.Contains(q)).ToList());
         }
 
     }
