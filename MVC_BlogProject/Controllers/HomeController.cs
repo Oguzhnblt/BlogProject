@@ -2,9 +2,7 @@
 using BlogProject.Core.Service;
 using BlogProject.Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
-using MVC_BlogProject.Models;
 using MVC_BlogProject.Models.ViewModels;
-using System.Diagnostics;
 
 namespace MVC_BlogProject.Controllers
 {
@@ -39,26 +37,26 @@ namespace MVC_BlogProject.Controllers
 
             return View(postService.GetDefault(x => x.CategoryID == id));
         }
-
         public IActionResult Post(Guid id) // Gönderinin ID'si
         {
             // Post'u göstermek için. Gösterirken de ViewCount sayısını 1 arttıracağız
 
-            Post okunanPost = postService.GetById(id);
-            okunanPost.ViewCount++;
-            postService.Update(okunanPost);
+            Post readPost = postService.GetById(id);
+            readPost.ViewCount++;
+            postService.Update(readPost);
 
             PostDetailVM vm = new PostDetailVM();
-            vm.Post = okunanPost;
-            vm.Category = categoryService.GetById(okunanPost.CategoryID);
-            vm.User = userService.GetById(okunanPost.UserID);
-            vm.Comments = commentService.GetDefault(x => x.Status == Status.Active && x.PostID == okunanPost.ID);
+            vm.Post = readPost;
+            vm.Category = categoryService.GetById(readPost.CategoryID);
+            vm.User = userService.GetById(readPost.UserID);
+            vm.Comments = commentService.GetDefault(x => x.Status == Status.Active && x.PostID == readPost.ID);
+            vm.Categories = categoryService.GetActive();
+
 
 
             // Random RelatedPost döndürmek için
 
             Random r = new Random(); // Random nesnesi oluşturduk.
-            vm.Categories = categoryService.GetActive();
 
             for (int i = 0; i < 3; i++)
             {
@@ -79,7 +77,7 @@ namespace MVC_BlogProject.Controllers
         {
             // Kategori ID'ye göre aktif postları döndür.
 
-            return View(postService.GetActive(x => x.Kullanici, x1=>x1.Comments).Where(x=>x.Title.Contains(q)|| x.PostDetail.Contains(q)).ToList());
+            return View(postService.GetActive(x => x.User, x1 => x1.Comments).Where(x => x.Title.Contains(q) || x.PostDetail.Contains(q)).ToList());
         }
 
     }

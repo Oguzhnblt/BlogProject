@@ -255,40 +255,40 @@ namespace BlogProject.Entities.Migrations
 
             modelBuilder.Entity("BlogProject.Entities.Entities.Comment", b =>
                 {
-                    b.HasOne("BlogProject.Entities.Entities.Post", "Gonderi")
+                    b.HasOne("BlogProject.Entities.Entities.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlogProject.Entities.Entities.User", "Kullanici")
+                    b.HasOne("BlogProject.Entities.Entities.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Gonderi");
+                    b.Navigation("Post");
 
-                    b.Navigation("Kullanici");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BlogProject.Entities.Entities.Post", b =>
                 {
-                    b.HasOne("BlogProject.Entities.Entities.Category", "Kategori")
+                    b.HasOne("BlogProject.Entities.Entities.Category", "Category")
                         .WithMany("Posts")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlogProject.Entities.Entities.User", "Kullanici")
+                    b.HasOne("BlogProject.Entities.Entities.User", "User")
                         .WithMany("Posts")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Kategori");
+                    b.Navigation("Category");
 
-                    b.Navigation("Kullanici");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BlogProject.Entities.Entities.Category", b =>

@@ -1,14 +1,15 @@
-﻿@{
+﻿@model PostDetailVM
+
+@{
     ViewData["Title"] = "Post";
 }
 
-@model PostDetailVM
 
 <div class="row tm-row">
     <div class="col-12">
         <hr class="tm-hr-primary tm-mb-35">
         <div class="tm-post-link-inner">
-            <img src="~/@Model.Post.ImagePath" class="img-fluid">
+            <img src="~/Uploads/blog-user.jpg" class="img-fluid">
         </div>
     </div>
 </div>
@@ -17,12 +18,9 @@
         <div class="tm-post-full">
             <div class="mb-4">
                 <h2 class="pt-2 tm-color-primary tm-post-title">@Model.Post.Title</h2>
-                <p class="tm-mb-10">@Model.User.FirstName, tarafından @Model.Post.CreatedDate.Value.ToShortDateString() tarihinde eklendi</p>
+                <p class="tm-mb-10">@Model.User.Comments, tarafından @Model.Post.CreatedDate tarihinde eklendi</p>
                 <p>
                     @Model.Post.PostDetail
-                </p>
-                <p>
-
                 </p>
                 <span class="d-block text-right tm-color-primary">@Model.Category.Status</span>
             </div>
@@ -36,7 +34,7 @@
                         <hr class="tm-hr-primary tm-mb-45">
                         <div class="tm-comment tm-mb-15">
                             <figure class="tm-comment-figure">
-                                <img src="~/FrontTemplate/img/comment-1.jpg" alt="Image" class="mb-2 rounded-circle img-thumbnail">
+                                <img src=~/@comment.User.ImageURL alt="Image" style="width:50%" class="mb-2 rounded-circle img-thumbnail">
                                 <figcaption class="tm-color-primary text-center"></figcaption>
                             </figure>
                             <div>
@@ -45,21 +43,13 @@
                                 </p>
                                 <div class="d-flex justify-content-between">
                                     <a href="#" class="tm-color-primary">Cevapla</a>
-                                    <span class="tm-color-primary">@comment.Kullanici.FirstName, @comment.CreatedDate.</span>
+                                    <span class="tm-color-primary">@comment.User.FirstName, @comment.CreatedDate.Value.ToShortDateString()</span>
                                 </div>
                             </div>
                         </div>
-
                     }
-
-
-                    <form asp-action="Create" asp-controller="Comment" asp-area="Admin" method="post" class="mb-5 tm-comment-form">
-
-                        <input type="hidden" name="userId" value="@Context.User.FindFirst("Id").Value.ToString()" />
-
-                        <input type="hidden" name="postId" value="@Model.Post.ID" />
-
-                        <h2 class="tm-color-primary tm-post-title mb-4">Yorumunuz</h2>
+                    <form action="" class="mb-5 tm-comment-form">
+                        <h2 class="tm-color-primary tm-post-title mb-4">Your comment</h2>
                         <div class="mb-4">
                             <input class="form-control" name="name" type="text">
                         </div>
@@ -73,7 +63,6 @@
                             <button class="tm-btn tm-btn-primary tm-btn-small">Submit</button>
                         </div>
                     </form>
-
                 }
             </div>
         </div>
@@ -82,20 +71,21 @@
         <div class="tm-post-sidebar">
             <hr class="mb-3 tm-hr-primary">
             <h2 class="mb-4 tm-post-title tm-color-primary">Kategoriler</h2>
-            <partial name="_SideCategoryList" model="@Model.Categories"></partial>
+            
+            @*PartialView'dan gelen _SideCategoryList*@
+            <partial name="PartialView/_SideCategoryList" model="Model.Categories" />
+
             <hr class="mb-3 tm-hr-primary">
             <h2 class="tm-mb-40 tm-post-title tm-color-primary">Benzer İçerikler</h2>
             @foreach (Post item in Model.RelatedPost)
             {
-                <a asp-action="Post" asp-asp-controller="Home" asp-route-id="@item.ID" class="d-block tm-mb-40">
+                <a asp-action="Post" asp-controller="Home" asp-route-id="@item.ID" class="d-block tm-mb-40">
                     <figure>
-                        <img src="img/img-02.jpg" alt="Image" class="mb-3 img-fluid">
-                        <figcaption class="tm-color-primary">Duis mollis diam nec ex viverra scelerisque a sit</figcaption>
+                        <img src="~/@item.ImagePath" alt="Image" class="mb-3 img-fluid">
+                        <figcaption class="tm-color-primary">@item.Title</figcaption>
                     </figure>
                 </a>
             }
-
         </div>
     </aside>
 </div>
-

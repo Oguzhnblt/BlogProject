@@ -14,12 +14,12 @@ namespace BlogProject.Entities.Entities
 
         // Navigation Properties 
 
-        [ForeignKey("Kullanici")]
+        [ForeignKey("User")]
         public Guid UserID { get; set; }    
-        public virtual User Kullanici { get; set; }
+        public virtual User User { get; set; }
 
-        [ForeignKey("Gonderi")]
+        [ForeignKey("Post")]
         public Guid PostID { get; set; }
-        public virtual Post Gonderi { get; set; }
+        public virtual Post Post { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace MVC_BlogProject.Controllers
 
         public IActionResult PostsByCategory(Guid id)
         {
-            return View(postService.GetActive(x=>x.Kullanici, a=>a.Comments).Where(b=>b.CategoryID == id).ToList());    
+            return View(postService.GetActive(x=>x.User, a=>a.Comments).Where(b=>b.CategoryID == id).ToList());    
         }
     }
 }

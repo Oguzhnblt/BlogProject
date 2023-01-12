@@ -17,7 +17,7 @@
         <p class="tm-pt-30">
             @if (gonderi.PostDetail.Length > 100)
             {
-                @gonderi.PostDetail.Substring(0,100)
+                @gonderi.PostDetail.Substring(0,100) <span></span>
             }
             else
             {
@@ -30,9 +30,11 @@
         </div>
         <hr>
         <div class="d-flex justify-content-between">
-            @*<span>@gonderi.Comments.</span>*@
-            @*<span>by Admin Nat @gonderi.UserID</span>*@
-            <span>@gonderi.Comments.ToString()</span>
+            @foreach (var item in gonderi.Comments)
+            {
+                <span>@item.ToString()</span>
+
+            }
         </div>
     </article>
 

@@ -20,6 +20,6 @@ namespace MVC_BlogProject.Models.ViewModels
 
         // Sağ tarafta RelatedPost Listesi
 
-        public List<Post> RelatedPost { get; set; } = new List<Post>(2);
+        public List<Post> RelatedPost { get; set; } = new List<Post>(3);
     }
 }

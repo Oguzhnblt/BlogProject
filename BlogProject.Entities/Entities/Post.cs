@@ -21,13 +21,13 @@ namespace BlogProject.Entities.Entities
         public int ViewCount { get; set; }
 
         // Navigation Properties
-        [ForeignKey("Kategori")]
+        [ForeignKey("Category")]
         public Guid CategoryID { get; set; }
-        public virtual Category Kategori { get; set; }
+        public virtual Category Category { get; set; }
 
-        [ForeignKey("Kullanici")]
+        [ForeignKey("User")]
         public Guid UserID { get; set; }
-        public virtual User Kullanici { get; set; }
+        public virtual User User { get; set; }
         public virtual List<Comment> Comments { get; set; }
 
 
