@@ -1,118 +1,179 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"] - MVC_BlogProject</title>
-    <link rel="stylesheet" href="~/frontTemplate/fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
-    <link href="~/frontTemplate/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/frontTemplate/css/templatemo-xtra-blog.css" rel="stylesheet">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>@ViewData["Title"] - Yönetim Paneli</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <link rel="stylesheet" href="~/backTemplate/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="~/backTemplate/assets/css/ready.css">
+    <link rel="stylesheet" href="~/backTemplate/assets/css/demo.css">
 </head>
 <body>
-    <header class="tm-header" id="tm-header">
-        <div class="tm-header-wrapper">
-            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="tm-site-header">
-                <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>
-                <h1 class="text-center">Oguz's  Admin Blog</h1>
+    <div class="wrapper">
+        <div class="main-header">
+            <div class="logo-header">
+                <a asp-action="Index" asp-controller="Home" asp-area="Administrator" class="logo">
+                    BA Blog Yönetim
+                </a>
+                <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
             </div>
-            <nav class="tm-nav" id="tm-nav">
-                <ul>
-                    <li class="tm-nav-item active">
-                        <a asp-action="Index" asp-controller="Home" asp-area="" class="tm-nav-link">
-                            <i class="fas fa-home"></i>
-                            Anasayfa
+            <nav class="navbar navbar-header navbar-expand-lg">
+                <div class="container-fluid">
+                    <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="~/backTemplate/assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span>Hizrian</span></span> </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <div class="user-box">
+                                        <div class="u-img"><img src="~/backTemplate/assets/img/profile.jpg" alt="user"></div>
+                                        <div class="u-text">
+                                            <h4>Hizrian</h4>
+                                            <p class="text-muted">hello@themekita.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class="ti-user"></i> My Profile</a>
+                                <a class="dropdown-item" href="#"></i> My Balance</a>
+                                <a class="dropdown-item" href="#"><i class="ti-email"></i> Inbox</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class="fa fa-power-off"></i> Logout</a>
+                            </ul>
+                            <!-- /.dropdown-user -->
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="sidebar">
+            <div class="scrollbar-inner sidebar-wrapper">
+                <div class="user">
+                    <div class="photo">
+                        <img src="~/backTemplate/assets/img/profile.jpg">
+                    </div>
+                    <div class="info">
+                        <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                            <span>
+                                Hizrian
+                                <span class="user-level">Administrator</span>
+                                <span class="caret"></span>
+                            </span>
+                        </a>
+                        <div class="clearfix"></div>
+
+                        <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
+                            <ul class="nav">
+                                <li>
+                                    <a href="#profile">
+                                        <span class="link-collapse">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#edit">
+                                        <span class="link-collapse">Edit Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#settings">
+                                        <span class="link-collapse">Settings</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a asp-action="Index" asp-controller="Home" asp-area="Administrator">
+                            <i class="la la-dashboard"></i>
+                            <p>AnaSayfa</p>
+
                         </a>
                     </li>
-                    <li class="tm-nav-item">
-                        <a asp-action="Index" asp-controller="Category" asp-area="" class="tm-nav-link">
-                            <i class="fas fa-pen"></i>
-                            Kategoriler
-                        </a>
+                    <li class="nav-item">
+                        <a asp-action="Index" asp-controller="Category" asp-area="Administrator">
+                            <i class="la la-table"></i>
+                            <p>Kategoriler</p>
 
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Index" asp-controller="Post" asp-area="Administrator">
+                            <i class="la la-keyboard-o"></i>
+                            <p>Makaleler</p>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Index" asp-controller="User" asp-area="Administrator">
+                            <i class="la la-th"></i>
+                            <p>Kullanıcılar</p>
+
+                        </a>
+                    </li>
                 </ul>
-            </nav>
-            <div class="tm-mb-65">
-                <a rel="nofollow" href="https://fb.com/templatemo" class="tm-social-link">
-                    <i class="fab fa-facebook tm-social-icon"></i>
-                </a>
-                <a href="https://twitter.com" class="tm-social-link">
-                    <i class="fab fa-twitter tm-social-icon"></i>
-                </a>
-                <a href="https://instagram.com" class="tm-social-link">
-                    <i class="fab fa-instagram tm-social-icon"></i>
-                </a>
-                <a href="https://linkedin.com" class="tm-social-link">
-                    <i class="fab fa-linkedin tm-social-icon"></i>
-                </a>
             </div>
-            <p class="tm-mb-80 pr-5 text-white">
-                KISA AÇIKLAMA BURAYA GELECEK
-            </p>
         </div>
-    </header>
-    <div class="container-fluid">
-        <main class="tm-main">
-            <!-- Search form -->
-            <div class="row tm-row">
-                <div class="col-12">
-                    <form asp-action="SearchResult" asp-controller="Home" asp-area="" method="GET" class="form-inline tm-mb-80 tm-search-form">
-                        <input class="form-control tm-search-input" name="q" type="text" placeholder="Ara..." aria-label="Search">
-                        <button class="tm-search-button" type="submit">
-                            <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
-                        </button>
-                    </form>
+        <div class="main-panel">
+            <div class="content">
+                <div class="container-fluid">
+                    @RenderBody()
                 </div>
             </div>
-            <div class="row tm-row">
-                <!--Burası RenderBody'den gelecek-->
-                @RenderBody()
-            </div>
-            <div class="row tm-row tm-mt-100 tm-mb-75">
-                <div class="tm-prev-next-wrapper">
-                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
-                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
-                </div>
-                <div class="tm-paging-wrapper">
-                    <span class="d-inline-block mr-3">Page</span>
-                    <nav class="tm-paging-nav d-inline-block">
-                        <ul>
-                            <li class="tm-paging-item active">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">1</a>
+            <footer class="footer fixed-bottom">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="http://www.themekita.com">
+                                    ThemeKita
+                                </a>
                             </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">2</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    Help
+                                </a>
                             </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">3</a>
-                            </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">4</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://themewagon.com/license/#free-item">
+                                    Licenses
+                                </a>
                             </li>
                         </ul>
                     </nav>
-                </div>
-            </div>
-            <footer class="row tm-row">
-                <hr class="col-12">
-                <div class="col-md-6 col-12 tm-color-gray">
-                    Tasarım: <a rel="nofollow" target="_blank" href="https:/oguz.com" class="tm-external-link">OguzB</a>
-                </div>
-                <div class="col-md-6 col-12 tm-color-gray tm-copyright">
-                    Copyright @DateTime.Now.Year &copy; Oguz Company Co. Ltd.
+                    <div class="copyright ml-auto">
+                        2018, made with <i class="la la-heart heart text-danger"></i> by <a href="http://www.themekita.com">ThemeKita</a>
+                    </div>
                 </div>
             </footer>
-        </main>
+        </div>
     </div>
-    <script src="~/frontTemplate/js/jquery.min.js"></script>
-    <script src="~/frontTemplate/js/templatemo-script.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    </div>
 </body>
+<script src="~/backTemplate/assets/js/core/jquery.3.2.1.min.js"></script>
+<script src="~/backTemplate/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="~/backTemplate/assets/js/core/popper.min.js"></script>
+<script src="~/backTemplate/assets/js/core/bootstrap.min.js"></script>
+<script src="~/backTemplate/assets/js/plugin/chartist/chartist.min.js"></script>
+<script src="~/backTemplate/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+@*<script src="~/backTemplate/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>*@
+<script src="~/backTemplate/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script src="~/backTemplate/assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="~/backTemplate/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
+<script src="~/backTemplate/assets/js/plugin/chart-circle/circles.min.js"></script>
+<script src="~/backTemplate/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="~/backTemplate/assets/js/ready.min.js"></script>
+<script src="~/backTemplate/assets/js/demo.js"></script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </html>
