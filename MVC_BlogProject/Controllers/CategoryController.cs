@@ -1,10 +1,12 @@
 ﻿using BlogProject.Core.Service;
 using BlogProject.Entities.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MVC_BlogProject.Controllers
 {
-    public class CategoryController : Controller
+
+	public class CategoryController : Controller
     {
         private readonly ICoreService<Category> categoryService;
         private readonly ICoreService<Post> postService;

@@ -1,6 +1,7 @@
 using BlogProject.Core.Service;
 using BlogProject.Entities.Context;
 using BlogProject.Service.Base;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -13,7 +14,12 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 // .NET Core MVC'de tamamen Dependency Injection yapýsýyla çalýþýyoruz. ICoreService interface'inin BaseService ile olan gevþek baðýmlýlýðýný tanýmlýyoruz. Nerede ICoreService çaðýrýlýrsa, onun yerine BaseService gönderilecektir.
 
 builder.Services.AddScoped(typeof(ICoreService<>), typeof(BaseService<>));
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+    options =>
+    {
+        options.LoginPath = "/Account/Login"; // Yetki istenilen sayfalara girmek istediðimizde, bizi yönlendireceði sayfayý bildiriyoruz.
+        
+    });
 
 builder.Services.AddDbContext<BlogProjectContext>(options => options.UseSqlServer("Server=OGUZ; Database=OnionBlogProject; uid=sa; pwd=123;"));
 
@@ -32,6 +38,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>

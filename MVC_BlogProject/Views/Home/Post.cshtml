@@ -6,10 +6,10 @@
 
 
 <div class="row tm-row">
-    <div class="col-12">
+    <div class="col-9">
         <hr class="tm-hr-primary tm-mb-35">
         <div class="tm-post-link-inner">
-            <img src="~/Uploads/blog-user.jpg" class="img-fluid">
+            <img src="~/@Model.Post.ImagePath" class="img-fluid">
         </div>
     </div>
 </div>
@@ -18,7 +18,7 @@
         <div class="tm-post-full">
             <div class="mb-4">
                 <h2 class="pt-2 tm-color-primary tm-post-title">@Model.Post.Title</h2>
-                <p class="tm-mb-10">@Model.User.Comments, tarafından @Model.Post.CreatedDate tarihinde eklendi</p>
+                <p class="tm-mb-10">@Model.User.FirstName @Model.User.LastName, tarafından @Model.Post.CreatedDate.Value.ToShortDateString() tarihinde eklendi</p>
                 <p>
                     @Model.Post.PostDetail
                 </p>
@@ -49,7 +49,7 @@
                         </div>
                     }
                     <form action="" class="mb-5 tm-comment-form">
-                        <h2 class="tm-color-primary tm-post-title mb-4">Your comment</h2>
+                        <h2 class="tm-color-primary tm-post-title mb-4">Yorumunuz</h2>
                         <div class="mb-4">
                             <input class="form-control" name="name" type="text">
                         </div>
@@ -79,7 +79,7 @@
             <h2 class="tm-mb-40 tm-post-title tm-color-primary">Benzer İçerikler</h2>
             @foreach (Post item in Model.RelatedPost)
             {
-                <a asp-action="Post" asp-controller="Home" asp-route-id="@item.ID" class="d-block tm-mb-40">
+                <a asp-action="Post" asp-controller="Home" asp-route-id="@item.ID" class="d-block tm-mb-20">
                     <figure>
                         <img src="~/@item.ImagePath" alt="Image" class="mb-3 img-fluid">
                         <figcaption class="tm-color-primary">@item.Title</figcaption>

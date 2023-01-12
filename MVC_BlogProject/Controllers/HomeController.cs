@@ -1,12 +1,14 @@
 ﻿using BlogProject.Core.Entity.Enum;
 using BlogProject.Core.Service;
 using BlogProject.Entities.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVC_BlogProject.Models.ViewModels;
 
 namespace MVC_BlogProject.Controllers
 {
-    public class HomeController : Controller
+
+	public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ICoreService<Category> categoryService;
@@ -23,7 +25,7 @@ namespace MVC_BlogProject.Controllers
             this.postService = postService;
             this.commentService = commentService;
         }
-
+         
         public IActionResult Index()
         {
             // Aktif olan postları döndür
@@ -68,7 +70,7 @@ namespace MVC_BlogProject.Controllers
             }
 
 
-            return View(); // View'a döndürürken ilgili postu, yazarını(kullanıcıyı) döndürmemiz gerekecektir. Bu sebeple Tuple ya da ViewModel yapısını kullanabiliriz.
+            return View(vm); // View'a döndürürken ilgili postu, yazarını(kullanıcıyı) döndürmemiz gerekecektir. Bu sebeple Tuple ya da ViewModel yapısını kullanabiliriz.
 
 
         }

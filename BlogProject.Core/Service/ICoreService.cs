@@ -25,5 +25,6 @@ namespace BlogProject.Core.Service
         bool Any(Expression<Func<T, bool>> expression);
         int Save(); // DB'de manipülasyon işleminden sonra 1 veya daha fazla satır etkilendiğinde bize kaç satırın etkilendiğini döndürecek metot.
         IQueryable<T> GetActive(params Expression<Func<T, object>>[] ex);
+        void DetachEntity(T item);
     }
 }

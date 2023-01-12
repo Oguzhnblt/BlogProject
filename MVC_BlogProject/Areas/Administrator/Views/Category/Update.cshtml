@@ -1,6 +1,6 @@
 ﻿@model Category
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Update";
 }
 
 <div class="col-md-12">
@@ -10,10 +10,11 @@
             @TempData["MessageError"]
         </div>
     }
-    <form asp-controller="Category" asp-action="Create" asp-area="Administrator" method="post">
+    <form asp-controller="Category" asp-action="Update" asp-area="Administrator" method="post">
+        <input type="hidden" asp-for="ID"/> @*Formun üzerinden gelen ID'yi taşımak için*@
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Yeni Kategori Ekle</div>
+                <div class="card-title">Kategori Güncelle</div>
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -26,7 +27,7 @@
                 </div>
             </div>
             <div class="card-action">
-                <button type="submit" class="btn btn-success">Ekle</button>
+                <button type="submit" class="btn btn-success">Güncelle</button>
             </div>
         </div>
     </form>

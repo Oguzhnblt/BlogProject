@@ -33,6 +33,7 @@
                             <i class="fas fa-pen"></i>
                             Kategoriler
                         </a>
+                    </li>
 
                 </ul>
             </nav>
@@ -50,9 +51,16 @@
                     <i class="fab fa-linkedin tm-social-icon"></i>
                 </a>
             </div>
-            <p class="tm-mb-80 pr-5 text-white">
-                KISA AÇIKLAMA BURAYA GELECEK
-            </p>
+            @if (string.IsNullOrEmpty(User.Identity.Name))
+            {
+                <button class="btn btn-light" onclick="location.href='@Url.Action("Login", "Account")'">Giriş Yap</button>
+
+            }
+            else
+            {
+                <button class="btn btn-danger" onclick="location.href='@Url.Action("Logout", "Account")'">Çıkış Yap</button>
+
+            }
         </div>
     </header>
     <div class="container-fluid">

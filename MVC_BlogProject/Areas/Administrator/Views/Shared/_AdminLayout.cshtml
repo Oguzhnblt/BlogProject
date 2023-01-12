@@ -23,72 +23,13 @@
             </div>
             <nav class="navbar navbar-header navbar-expand-lg">
                 <div class="container-fluid">
-                    <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-
-                        <li class="nav-item dropdown">
-                            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="~/backTemplate/assets/img/profile.jpg" alt="user-img" width="36" class="img-circle"><span>Hizrian</span></span> </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li>
-                                    <div class="user-box">
-                                        <div class="u-img"><img src="~/backTemplate/assets/img/profile.jpg" alt="user"></div>
-                                        <div class="u-text">
-                                            <h4>Hizrian</h4>
-                                            <p class="text-muted">hello@themekita.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="ti-user"></i> My Profile</a>
-                                <a class="dropdown-item" href="#"></i> My Balance</a>
-                                <a class="dropdown-item" href="#"><i class="ti-email"></i> Inbox</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="fa fa-power-off"></i> Logout</a>
-                            </ul>
-                            <!-- /.dropdown-user -->
-                        </li>
-                    </ul>
+           
                 </div>
             </nav>
         </div>
         <div class="sidebar">
             <div class="scrollbar-inner sidebar-wrapper">
-                <div class="user">
-                    <div class="photo">
-                        <img src="~/backTemplate/assets/img/profile.jpg">
-                    </div>
-                    <div class="info">
-                        <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                            <span>
-                                Hizrian
-                                <span class="user-level">Administrator</span>
-                                <span class="caret"></span>
-                            </span>
-                        </a>
-                        <div class="clearfix"></div>
 
-                        <div class="collapse in" id="collapseExample" aria-expanded="true" style="">
-                            <ul class="nav">
-                                <li>
-                                    <a href="#profile">
-                                        <span class="link-collapse">My Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#edit">
-                                        <span class="link-collapse">Edit Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#settings">
-                                        <span class="link-collapse">Settings</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
                 <ul class="nav">
                     <li class="nav-item active">
                         <a asp-action="Index" asp-controller="Home" asp-area="Administrator">
@@ -113,8 +54,22 @@
                     </li>
                     <li class="nav-item">
                         <a asp-action="Index" asp-controller="User" asp-area="Administrator">
-                            <i class="la la-th"></i>
+                            <i class="la la-user"></i>
                             <p>Kullanıcılar</p>
+
+                        </a>
+                    </li>
+                       <li class="nav-item">
+                     <a asp-action="Index" asp-controller="Comment" asp-area="Administrator">
+                            <i class="la la-comment"></i>
+                            <p>Yorumlar</p>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Logout" asp-controller="Account" asp-area="">
+                            <i class="la la-lock"></i>
+                            <p>Çıkış Yap</p>
 
                         </a>
                     </li>
@@ -130,31 +85,10 @@
             <footer class="footer fixed-bottom">
                 <div class="container-fluid">
                     <nav class="pull-left">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="http://www.themekita.com">
-                                    ThemeKita
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    Help
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://themewagon.com/license/#free-item">
-                                    Licenses
-                                </a>
-                            </li>
-                        </ul>
                     </nav>
-                    <div class="copyright ml-auto">
-                        2018, made with <i class="la la-heart heart text-danger"></i> by <a href="http://www.themekita.com">ThemeKita</a>
-                    </div>
                 </div>
             </footer>
         </div>
-    </div>
     </div>
 </body>
 <script src="~/backTemplate/assets/js/core/jquery.3.2.1.min.js"></script>
@@ -171,7 +105,6 @@
 <script src="~/backTemplate/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 <script src="~/backTemplate/assets/js/ready.min.js"></script>
 <script src="~/backTemplate/assets/js/demo.js"></script>
-
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
