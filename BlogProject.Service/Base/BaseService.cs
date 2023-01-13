@@ -3,13 +3,7 @@ using BlogProject.Core.Entity.Enum;
 using BlogProject.Core.Service;
 using BlogProject.Entities.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace BlogProject.Service.Base
@@ -73,6 +67,15 @@ namespace BlogProject.Service.Base
         }
 
         public List<T> GetAll() => context.Set<T>().ToList();
+        public IQueryable<T> GetAll(params Expression<Func<T, object>>[] includes)
+        {
+            var query = context.Set<T>().AsQueryable();
+            if (includes != null)
+            {
+                query = includes.Aggregate(query, (current, include) => current.Include(include));
+            }
+            return query;
+        }
 
         public T GetByDefault(Expression<Func<T, bool>> expression) => context.Set<T>().FirstOrDefault(expression);
 
@@ -170,6 +173,8 @@ namespace BlogProject.Service.Base
         {
             context.Entry<T>(item).State = EntityState.Detached; // Bir entry'i takip etmeyi bırakmak için kullanılır.
         }
+
+
     }
 }
 

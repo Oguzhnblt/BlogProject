@@ -1,4 +1,5 @@
 ﻿using BlogProject.Core.Entity;
+using BlogProject.Core.Entity.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,14 @@ namespace BlogProject.Entities.Entities
         }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
-        public string ImageURL { get; set; }
+        public string? ImageURL { get; set; }
         public string EmailAddress { get; set; }
         public string Password { get; set; }
+        public UserRole UserRole { get; set; }
         public DateTime? LastLogin { get; set; }
-        public string LastIPAddress { get; set; }
+        public string? LastIPAddress { get; set; }
 
         // Navigation Properties
 

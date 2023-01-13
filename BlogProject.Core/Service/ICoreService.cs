@@ -21,6 +21,7 @@ namespace BlogProject.Core.Service
         List<T> GetActive();
         List<T> GetDefault(Expression<Func<T, bool>> expression);
         List<T> GetAll();
+        IQueryable<T> GetAll(params Expression<Func<T, object>>[] ex);
         bool Activate(Guid id);
         bool Any(Expression<Func<T, bool>> expression);
         int Save(); // DB'de manipülasyon işleminden sonra 1 veya daha fazla satır etkilendiğinde bize kaç satırın etkilendiğini döndürecek metot.

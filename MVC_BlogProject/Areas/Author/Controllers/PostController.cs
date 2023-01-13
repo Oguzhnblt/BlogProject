@@ -4,12 +4,12 @@ using BlogProject.Entities.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using MVC_BlogProject.Areas.Administrator.Models;
+using MVC_BlogProject.Areas.Author.Models;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
-namespace MVC_BlogProject.Areas.Administrator.Controllers
+namespace MVC_BlogProject.Areas.Author.Controllers
 {
-    [Area("Administrator"), Authorize(Roles = "Admin")]
+    [Area("Author"), Authorize(Roles = "Yazar")]
 
     public class PostController : Controller
     {
@@ -25,7 +25,7 @@ namespace MVC_BlogProject.Areas.Administrator.Controllers
         }
         public IActionResult Index()
         {
-            return View(postService.GetAll());
+            return View(postService.GetDefault(x => x.UserID == Guid.Parse(HttpContext.User.FindFirst("ID").Value.ToString())));
         }
 
 
@@ -96,7 +96,7 @@ namespace MVC_BlogProject.Areas.Administrator.Controllers
         [HttpPost] // Update sayfasından gelen veriyi DB'de güncelleyecek.
         public IActionResult Update(Post post, List<IFormFile> files)
         {
-            ViewBag.Categories = new SelectList(categoryService.GetActive(), "ID", "CategoryName");         
+            ViewBag.Categories = new SelectList(categoryService.GetActive(), "ID", "CategoryName");
 
             // Alınan görselleri, görsel yüklemek için oluşturduğumuz metoda göndereceğiz.
             bool imageResult;
@@ -112,7 +112,7 @@ namespace MVC_BlogProject.Areas.Administrator.Controllers
                 return View();
             }
 
-     
+
             if (ModelState.IsValid)
             {
                 Post updatedPost = postService.GetById(post.ID);
@@ -141,20 +141,6 @@ namespace MVC_BlogProject.Areas.Administrator.Controllers
                 TempData["MessageError"] = $"Kayıt işlemi sırasında bir hata meydana geldi. Lütfen tüm alanları kontrol edin.";
             }
             return View(post); // Ekleme işlemi sırasında kullanılan category bilgileriyle View'a döndürmesi sağlanabilir.
-        }
-
-
-        public IActionResult Activate(Guid id) // Gelen ID'ye göre ilgili nesneyi aktifleştirecek.
-        {
-            // View göstermeyecek direkt Index'e yönlendirebiliriz.
-            postService.Activate(id);
-            return RedirectToAction("Index");
-        }
-        public IActionResult Delete(Guid id) // Gelen ID'ye göre ilgili nesneyi silecek.
-        {
-            // View göstermeyecek direkt Index'e yönlendirebiliriz.
-            postService.Remove(postService.GetById(id));
-            return RedirectToAction("Index");
         }
     }
 }

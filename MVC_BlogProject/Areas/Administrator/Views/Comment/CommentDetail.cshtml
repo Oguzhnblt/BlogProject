@@ -1,0 +1,51 @@
+﻿@using BlogProject.Core.Entity.Enum;
+@using MVC_BlogProject.Areas.Administrator.Models.ViewModels;
+@model CommentDetailVM
+@{
+    ViewData["Title"] = "Yorum Detay";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">Yorum Sahibi : <b class="text-danger">@Model.User.FirstName @Model.User.LastName</b></div>
+        <div class="mx-auto text-bold"> Yorum Durumu:
+
+            @if (Model.Comment.Status == Status.Active)
+            {
+                <button class="btn btn-success small">Aktif</button>
+            }
+            else if (Model.Comment.Status == Status.None)
+            {
+                <button>Onay Bekliyor</button>
+            }
+            else if (Model.Comment.Status == Status.Updated)
+            {
+                <button class="btn btn-secondary">Güncellendi</button>
+            }
+            else if (Model.Comment.Status == Status.Deleted)
+            {
+                <button class="btn btn-danger">Silindi</button>
+            }
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="card-sub">
+            
+        </div>
+        <div>
+            <div>
+                <dl>
+                    <dt>Makale:</dt>
+                    <dd>@Model.Post.Title</dd>
+
+                    <dt>Yorum:</dt>
+                    <dd>@Model.Comment.CommentText</dd>
+
+                    <dt>Yorum Tarihi:</dt>
+                    <dd>@Model.Comment.CreatedDate.Value.ToShortDateString()</dd>
+                </dl>
+            </div>
+
+        </div>
+    </div>
+</div>

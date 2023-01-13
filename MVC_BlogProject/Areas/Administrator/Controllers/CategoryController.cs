@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MVC_BlogProject.Areas.Administrator.Controllers
 {
-	[Area("Administrator"), Authorize]
+	[Area("Administrator"), Authorize(Roles ="Admin")]
 
 	public class CategoryController : Controller
 	{

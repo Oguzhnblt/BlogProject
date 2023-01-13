@@ -1,4 +1,5 @@
-﻿@model PostDetailVM
+﻿@using System.Security.Claims;
+@model PostDetailVM
 
 @{
     ViewData["Title"] = "Post";
@@ -20,12 +21,12 @@
                 <h2 class="pt-2 tm-color-primary tm-post-title">@Model.Post.Title</h2>
                 <p class="tm-mb-10">@Model.User.FirstName @Model.User.LastName, tarafından @Model.Post.CreatedDate.Value.ToShortDateString() tarihinde eklendi</p>
                 <p>
-                    @Model.Post.PostDetail
+                    @Html.Raw(@Model.Post.PostDetail)
                 </p>
                 <span class="d-block text-right tm-color-primary">@Model.Category.Status</span>
             </div>
 
-            <!-- Comments -->
+            <!-- Yorumlar -->
             <div>
                 @{
                     <h2 class="tm-color-primary tm-post-title">Yorumlar</h2>
@@ -48,16 +49,29 @@
                             </div>
                         </div>
                     }
-                    <form action="" class="mb-5 tm-comment-form">
+                    @if (TempData["MessageError"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["MessageError"]
+                        </div>
+                    }
+                    else if (TempData["MessageSuccess"] != null)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @TempData["MessageSuccess"]
+                        </div>
+                    }
+
+                    <form asp-action="Create" asp-controller="Comment" asp-area="Administrator" method="post" class="mb-5 tm-comment-form">
+                        <input type="hidden" name="userID" value="@Context.User.FindFirst("ID").Value.ToString()">
+                        <input type="hidden" name="postID" value="@Model.Post.ID">
+
                         <h2 class="tm-color-primary tm-post-title mb-4">Yorumunuz</h2>
                         <div class="mb-4">
-                            <input class="form-control" name="name" type="text">
+                            <input class="form-control" type="text" disabled placeholder="@Context.User.FindFirst(ClaimTypes.Name).Value.ToString() @Context.User.FindFirst(ClaimTypes.Surname).Value.ToString()">
                         </div>
                         <div class="mb-4">
-                            <input class="form-control" name="email" type="text">
-                        </div>
-                        <div class="mb-4">
-                            <textarea class="form-control" name="message" rows="6"></textarea>
+                            <textarea class="form-control" name="commentMessage" rows="6" placeholder="Mesajınızı yazabilirsiniz."></textarea>
                         </div>
                         <div class="text-right">
                             <button class="tm-btn tm-btn-primary tm-btn-small">Submit</button>
@@ -71,7 +85,7 @@
         <div class="tm-post-sidebar">
             <hr class="mb-3 tm-hr-primary">
             <h2 class="mb-4 tm-post-title tm-color-primary">Kategoriler</h2>
-            
+
             @*PartialView'dan gelen _SideCategoryList*@
             <partial name="PartialView/_SideCategoryList" model="Model.Categories" />
 

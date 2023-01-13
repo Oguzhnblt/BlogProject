@@ -1,0 +1,74 @@
+﻿@model Post
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="col-md-12">
+    @if (TempData["MessageError"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["MessageError"]
+        </div>
+    }
+    <form asp-controller="Post" asp-action="Create" asp-area="Author" method="post" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Yeni Post Ekle</div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Title">Post Başlığı</label>
+                    <input asp-for="Title" type="text" class="form-control input-square" placeholder="Post Adı Giriniz">
+                </div>
+                <div class="form-group">
+                    <label asp-for="PostDetail">Post İçeriği</label>
+                    <textarea asp-for="PostDetail" id="summernote" rows="3" class="form-control input-square" placeholder="Post Açıklaması Giriniz"></textarea>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImagePath">Post Görsel</label>
+                    <input asp-for="ImagePath" type="file" name="files" class="form-control input-square" placeholder="Post Görseli Ekleyiniz"></input>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tags">Post Etiketleri</label>
+                    <input asp-for="Tags" type="text" class="form-control input-square" placeholder="Etiketleri virgülle ayırarak girebilirsiniz."></input>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryID">Post Kategorisi</label>
+                    <select asp-for="CategoryID" asp-items="@ViewBag.Categories" class="form-control">
+                        <option>
+                            Kategori Seçiniz
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="card-action">
+                <button type="submit" class="btn btn-success">Post Ekle</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section css{
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+}
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote();
+        });
+    </script>
+}
+
+
+
+

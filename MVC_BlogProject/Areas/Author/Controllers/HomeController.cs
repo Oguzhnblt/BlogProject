@@ -3,9 +3,9 @@ using BlogProject.Entities.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MVC_BlogProject.Areas.Administrator.Controllers
+namespace MVC_BlogProject.Areas.Author.Controllers
 {
-	[Area("Administrator"), Authorize(Roles = "Admin")]
+	[Area("Author"), Authorize(Roles = "Yazar")]
 
 	public class HomeController : Controller
     {

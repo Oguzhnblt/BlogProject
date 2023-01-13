@@ -4,8 +4,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>@ViewData["Title"] - Yönetim Paneli</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-@*    <link rel="stylesheet" href="~/backTemplate/assets/css/bootstrap.min.css">
-*@
+    @*    <link rel="stylesheet" href="~/backTemplate/assets/css/bootstrap.min.css">
+    *@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 
@@ -18,7 +18,7 @@
     <div class="wrapper">
         <div class="main-header">
             <div class="logo-header">
-                <a asp-action="Index" asp-controller="Home" asp-area="Administrator" class="logo">
+                <a asp-action="Index" asp-controller="Home" asp-area="Author" class="logo">
                     BA Blog Yönetim
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,6 @@
             </div>
             <nav class="navbar navbar-header navbar-expand-lg">
                 <div class="container-fluid">
-           
                 </div>
             </nav>
         </div>
@@ -37,37 +36,16 @@
 
                 <ul class="nav">
                     <li class="nav-item active">
-                        <a asp-action="Index" asp-controller="Home" asp-area="Administrator">
+                        <a asp-action="Index" asp-controller="Home" asp-area="Author">
                             <i class="la la-dashboard"></i>
                             <p>AnaSayfa</p>
 
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a asp-action="Index" asp-controller="Category" asp-area="Administrator">
-                            <i class="la la-table"></i>
-                            <p>Kategoriler</p>
-
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-action="Index" asp-controller="Post" asp-area="Administrator">
+                        <a asp-action="Index" asp-controller="Post" asp-area="Author">
                             <i class="la la-keyboard-o"></i>
                             <p>Makaleler</p>
-
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-action="Index" asp-controller="User" asp-area="Administrator">
-                            <i class="la la-user"></i>
-                            <p>Kullanıcılar</p>
-
-                        </a>
-                    </li>
-                       <li class="nav-item">
-                     <a asp-action="Index" asp-controller="Comment" asp-area="Administrator">
-                            <i class="la la-comment"></i>
-                            <p>Yorumlar</p>
 
                         </a>
                     </li>
